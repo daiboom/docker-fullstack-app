@@ -23,3 +23,15 @@ after_success:
   - docker push daiboom/docker-frontend
   - docker push daiboom/docker-backend
   - docker push daiboom/docker-nginx
+
+deploy:
+  provider: elasticbeanstalk
+  region: 'ap-northeast2'
+  app: 'docker-fullstack-app'
+  env: 'Dockerfullstackapp-env'
+  bucket_name: elasticbeanstalk-ap-northeast-2-163242303507
+  bucket_path: 'docker-fullstack-app'
+  on:
+    branch: main
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_ACCESS_KEY
