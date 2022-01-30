@@ -4,6 +4,7 @@ services:
   - docker
 
 before_install:
+  - echo 'before_install'
   - docker build -t daiboom/react-test-app -f ./frontend/Dockerfile.dev
     ./frontend
 
@@ -11,6 +12,7 @@ script:
   - docker run -e CI=true daiboom/react-test-app npm run test
 
 after_success:
+  - echo 'after_success'
   - docker build -t daiboom/docker-frontend ./frontend
   - docker build -t daiboom/docker-backend  ./backend
   - docker build -t daiboom/docker-nginx    ./nginx
